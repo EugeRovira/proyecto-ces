@@ -74,26 +74,26 @@ public class Main {
                 }
    //Login
 
-                    public static void login() {
-            if (admin.email == null) {
-                System.out.println("Debe registrar un administrador");
-                return;
-            }
-                        System.out.println("Login");
+    public static void login() {
+        if (admin.email == null) {
+            System.out.println("Debe registrar un administrador");
+            return;
+        }
+        System.out.println("Login");
 
-                        System.out.println("Email");
-                        String email = scanner.nextLine();
+        System.out.println("Email");
+        String email = scanner.nextLine();
 
-                        System.out.println("Contraseña");
-                        String clave = scanner.nextLine();
+        System.out.println("Contraseña");
+        String clave = scanner.nextLine();
 
-                        if (email.equals(admin.email) && clave.equals(admin.clave)) {
-                            System.out.println("Login exitoso");
+        if (email.equals(admin.email) && clave.equals(admin.clave)) {
+            System.out.println("Login exitoso");
 
-                        } else {
-                                System.out.println("Datos incorrectos");
-                        }
-                    }
+        } else {
+            System.out.println("Datos incorrectos");
+        }
+    }
 
-                }
+}
 
