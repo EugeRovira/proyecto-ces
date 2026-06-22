@@ -218,7 +218,7 @@ SistemaUsuarios
 + getUsuarios() : Usuario[]
 --------------------------------------------------
 
-SistemaUsuarios 1 ─────── 0..* Usuario
+SistemaUsuarios ◇──────── Usuario
 
 
-![img.png](img.png)
+![img_1.png](img_1.png)
