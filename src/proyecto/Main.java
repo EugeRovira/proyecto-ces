@@ -5,9 +5,7 @@ import java.util.Scanner;
 public class Main {
 
         static Scanner scanner = new Scanner(System.in);
-
-        //usuario administrador
-        static Usuario admin = new Usuario();
+        static SistemaUsuarios sistema = new SistemaUsuarios();
 
         public static void main(String[] args) {
 
@@ -45,40 +43,45 @@ public class Main {
        //Registro de admin
                 public static void registrar() {
 
-            if (admin.email != null) {
-                System.out.println("Ya existe administrador registrado");
-                return;
-            }
-                    System.out.println("Registro de Administrador");
+                    System.out.println("Registro de Usuario:");
+
+                    System.out.println("Email:");
+                    String email = scanner.nextLine();
+
+                    if (sistema.usuarioExiste(email)) {
+                        System.out.println("El usuario ya existe");
+                        return;
+                    }
+
+                    Usuario usuario = new Admin();
+
+                    usuario.setEmail(email);
 
                     System.out.println("Nombre: ");
-                    admin.nombre = scanner.nextLine();
+                    usuario.setNombre(scanner.nextLine());
 
                     System.out.println("Apellido: ");
-                    admin.apellido = scanner.nextLine();
+                    usuario.setApellido(scanner.nextLine());
 
                     System.out.println("Edad: ");
-                    admin.edad = scanner.nextInt();
+                    usuario.setEdad(scanner.nextInt());
                     scanner.nextLine();
 
                     System.out.println("Pais: ");
-                    admin.pais = scanner.nextLine();
-
-                    System.out.println("Email: ");
-                    admin.email = scanner.nextLine();
+                    usuario.setPais(scanner.nextLine());
 
                     System.out.println("Contraseña: ");
-                    admin.clave = scanner.nextLine();
+                    usuario.setClave(scanner.nextLine());
 
-                    System.out.println("Administrador registrado con éxito");
+
+                    sistema.agregarUsuario(usuario);
+
+                    System.out.println("Usuario registrado con éxito");
                 }
    //Login
 
     public static void login() {
-        if (admin.email == null) {
-            System.out.println("Debe registrar un administrador");
-            return;
-        }
+
         System.out.println("Login");
 
         System.out.println("Email");
@@ -87,9 +90,8 @@ public class Main {
         System.out.println("Contraseña");
         String clave = scanner.nextLine();
 
-        if (email.equals(admin.email) && clave.equals(admin.clave)) {
+        if (sistema.login(email, clave)) {
             System.out.println("Login exitoso");
-
         } else {
             System.out.println("Datos incorrectos");
         }
