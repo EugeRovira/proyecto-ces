@@ -1,71 +1,68 @@
 package proyecto;
+import java.util.ArrayList;
 
 public class SistemaUsuarios {
 
-    private Usuario[] usuarios;
-    private int cantidad;
+    private ArrayList<Usuario> usuarios;
 
     public SistemaUsuarios() {
 
-        usuarios = new Usuario[10];
-        cantidad = 0;
+        usuarios = new ArrayList<>();
 
-        usuarios[cantidad++] = new Admin(
+        usuarios.add(new Admin(
                 "Pablo",
                 "Martinez",
                 29,
                 "Uruguay",
                 "admin@gmail.com",
                 "1234",
-                "TOTAL");
+                "TOTAL"));
 
-        usuarios[cantidad++] = new Tester(
+        usuarios.add(new Tester(
                 "Juan",
                 "Lopez",
                 24,
                 "Uruguay",
                 "tester@gmail.com",
                 "1234",
-                "FUNCIONAL");
+                "FUNCIONAL"));
     }
 
     public void agregarUsuario(Usuario usuario) {
 
-        if (cantidad < usuarios.length) {
-            usuarios[cantidad++] = usuario;
-        }
+        usuarios.add(usuario);
     }
 
-    public boolean login(String email, String clave) {
+    public Usuario login(String email, String clave) {
 
-        for (int i = 0; i < cantidad; i++) {
+        for (Usuario usuario : usuarios) {
 
-            if (usuarios[i].getEmail().equals(email)
-                    && usuarios[i].getClave().equals(clave)) {
+            if (usuario.getEmail().equals(email)
+                    && usuario.getClave().equals(clave)) {
 
-                return true;
+                return usuario;
             }
         }
 
-        return false;
+        return null;
     }
 
         public boolean usuarioExiste(String email) {
 
-        for (int i = 0; i < cantidad; i++) {
+            for (Usuario usuario : usuarios) {
 
-            if (usuarios[i].getEmail().equals(email)) {
-                return true;
-            }
+                if (usuario.getEmail().equals(email)) {
+                    return true;
+                }
         }
         return false;
     }
 
         public boolean existeAdministrador() {
 
-            for (int i = 0; i < cantidad; i++) {
+            for (Usuario usuario : usuarios) {
 
-                if (usuarios[i] instanceof Admin) {
+                if (usuario instanceof Admin) {
                     return true;
                 }
             }
@@ -73,7 +70,41 @@ public class SistemaUsuarios {
             return false;
         }
 
-        public Usuario[] getUsuarios () {
-            return usuarios;
+    public void mostrarRolesUsuarios() {
+
+        for (Usuario usuario : usuarios) {
+            usuario.mostrarRol();
         }
+    }
+    public Usuario buscarUsuario(String email) {
+
+        for (Usuario usuario : usuarios) {
+
+            if (usuario.getEmail().equals(email)) {
+                return usuario;
+            }
+        }
+
+        return null;
+    }
+
+    public void listarUsuarios() {
+
+        for (Usuario usuario : usuarios) {
+
+            System.out.println("Nombre: " + usuario.getNombre());
+            System.out.println("Apellido: " + usuario.getApellido());
+            System.out.println("Email: " + usuario.getEmail());
+            System.out.println("Pais: " + usuario.getPais());
+
+            usuario.mostrarRol();
+
+            System.out.println("----------------------");
+        }
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+
+        return usuarios;
+    }
 }

@@ -5,6 +5,7 @@ public class Tester extends Usuario {
     private String tipoPrueba;
 
     public Tester() {
+
         super();
     }
 
@@ -16,11 +17,17 @@ public class Tester extends Usuario {
     }
 
     public String getTipoPrueba() {
+
         return tipoPrueba;
     }
 
     public void setTipoPrueba(String tipoPrueba) {
+
         this.tipoPrueba = tipoPrueba;
+    }
+    @Override
+    public void mostrarRol() {
+        System.out.println("Soy un tester y realizo pruebas de tipo: " + tipoPrueba);
     }
 }
 

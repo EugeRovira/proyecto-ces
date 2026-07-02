@@ -5,6 +5,7 @@ public class Admin extends Usuario {
     private String nivelAcceso;
 
     public Admin() {
+
         super();
     }
 
@@ -17,9 +18,14 @@ public class Admin extends Usuario {
     }
 
     public String getNivelAcceso() {
+
         return nivelAcceso;
     }
     public void setNivelAcceso(String nivelAcceso) {
         this.nivelAcceso = nivelAcceso;
+    }
+    @Override
+    public void mostrarRol() {
+        System.out.println("Soy un administrador con nivel de acceso: " + nivelAcceso);
     }
 }

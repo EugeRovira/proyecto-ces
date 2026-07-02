@@ -1,6 +1,6 @@
 package proyecto;
 
-public class Usuario {
+public abstract class Usuario {
 
     private String nombre;
     private String apellido;
@@ -23,14 +23,17 @@ public class Usuario {
     }
 
     public String getNombre() {
+
         return nombre;
     }
 
     public void setNombre(String nombre) {
+
         this.nombre = nombre;
     }
 
     public String getApellido() {
+
         return apellido;
     }
 
@@ -69,6 +72,7 @@ public class Usuario {
     public void setClave(String clave) {
         this.clave = clave;
     }
+    public abstract void mostrarRol();
 }
 
 
