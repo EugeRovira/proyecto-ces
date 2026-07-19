@@ -4,112 +4,134 @@ import java.util.Scanner;
 
 public class Main {
 
-        static Scanner scanner = new Scanner(System.in);
-        static SistemaUsuarios sistema = new SistemaUsuarios();
+    static Scanner scanner = new Scanner(System.in);
+    static SistemaUsuarios sistema =
+            SistemaUsuarios.getInstancia();
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-            int opcion = 0;
+        int opcion = 0;
 
-            while (opcion != 3) {
+        while (opcion != 3) {
 
-                System.out.println("Seleccione una opción:");
-                System.out.println("1 - Registro");
-                System.out.println("2 - Login");
-                System.out.println("3 - Salir");
+            System.out.println("Seleccione una opción:");
+            System.out.println("1 - Registro de administrador");
+            System.out.println("2 - Login");
+            System.out.println("3 - Salir");
 
-                opcion = scanner.nextInt();
-                scanner.nextLine();
+            opcion = leerOpcion();
 
-                switch (opcion) {
-                    case 1:
-                        registrar();
-                        break;
+            switch (opcion) {
+                case 1:
+                    registrar();
+                    break;
 
-                    case 2:
-                        login();
-                        break;
+                case 2:
+                    login();
+                    break;
 
-                    case 3:
-                        System.out.println("Programa finalizado");
-                        break;
+                case 3:
+                    System.out.println("Programa finalizado");
+                    break;
 
-                    default:
-                        System.out.println("No se ingresó una opción válida");
-                }
+                default:
+                    System.out.println("No se ingresó una opción válida");
             }
         }
+    }
 
-       //Registro de usuario
-       public static void registrar() {
+    //Registro de admin
+    public static void registrar() {
 
-           System.out.println("Registro de Usuario:");
+        try {
 
-           System.out.println("Tipo de usuario:");
-           System.out.println("1 - Administrador");
-           System.out.println("2 - Tester");
+            System.out.println("Registro de Administrador:");
 
-           int tipo = scanner.nextInt();
-           scanner.nextLine();
+            Admin administrador = new Admin();
 
-           Usuario usuario;
+            System.out.println("Email:");
+            String email = scanner.nextLine();
 
-           if (tipo == 1) {
-               usuario = new Admin();
+            administrador.setEmail(email);
 
-               ((Admin) usuario).setNivelAcceso("TOTAL");
+            System.out.println("Nombre:");
+            administrador.setNombre(scanner.nextLine());
 
-           } else if (tipo == 2) {
-               usuario = new Tester();
+            System.out.println("Apellido:");
+            administrador.setApellido(scanner.nextLine());
 
-               System.out.println("Tipo de prueba:");
-               ((Tester) usuario).setTipoPrueba(scanner.nextLine());
+            System.out.println("País de Nacimiento:");
+            administrador.setPaisNacimiento(scanner.nextLine());
 
-           } else {
-               System.out.println("Tipo de usuario inválido");
-               return;
-           }
+            System.out.println("Contraseña:");
+            administrador.setClave(scanner.nextLine());
 
-           System.out.println("Email:");
-           String email = scanner.nextLine();
+            sistema.agregarUsuario(administrador);
 
-           if (sistema.usuarioExiste(email)) {
-               System.out.println("El usuario ya existe");
-               return;
-           }
+            System.out.println("Administrador registrado con éxito");
 
-           usuario.setEmail(email);
+        } catch (EmailDuplicadoException | DatosInvalidosException e) {
 
-           System.out.println("Nombre:");
-           usuario.setNombre(scanner.nextLine());
+            System.out.println("Error: " + e.getMessage());
 
-           System.out.println("Apellido:");
-           usuario.setApellido(scanner.nextLine());
+        } catch (Exception e) {
 
-           System.out.println("Edad:");
-           usuario.setEdad(scanner.nextInt());
-           scanner.nextLine();
+            System.out.println("Ocurrió un error inesperado.");
+        }
+    }
 
-           System.out.println("Pais:");
-           usuario.setPais(scanner.nextLine());
+    // Registro de tester realizado por un administrador
+    public static void registrarTester() {
 
-           System.out.println("Contraseña:");
-           usuario.setClave(scanner.nextLine());
+        try {
 
-           sistema.agregarUsuario(usuario);
+            System.out.println("Registro de tester:");
 
-           System.out.println("Usuario registrado con éxito");
-       }
-   //Login
+            Tester tester = new Tester();
 
+            System.out.println("Email:");
+            tester.setEmail(scanner.nextLine());
+
+            System.out.println("Nombre:");
+            tester.setNombre(scanner.nextLine());
+
+            System.out.println("Apellido:");
+            tester.setApellido(scanner.nextLine());
+
+            System.out.println("País de nacimiento:");
+            tester.setPaisNacimiento(scanner.nextLine());
+
+            System.out.println("Contraseña:");
+            tester.setClave(scanner.nextLine());
+
+            System.out.println("Tipo de tester:");
+            tester.setTipoTester(scanner.nextLine());
+
+            sistema.agregarUsuario(tester);
+
+            System.out.println("El tester se ha registrado con éxito");
+
+        } catch (EmailDuplicadoException | DatosInvalidosException e) {
+
+            System.out.println("Error: " + e.getMessage());
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Ocurrió un error inesperado al registrar el tester."
+            );
+        }
+    }
+
+    //Login
     public static void login() {
 
         System.out.println("Login");
 
-        System.out.println("Email");
+        System.out.println("Email:");
         String email = scanner.nextLine();
 
-        System.out.println("Contraseña");
+        System.out.println("Contraseña:");
         String clave = scanner.nextLine();
 
         Usuario usuarioLogueado = sistema.login(email, clave);
@@ -128,15 +150,15 @@ public class Main {
 
         if (usuarioLogueado instanceof Admin) {
 
-            while (opcion != 3) {
+            while (opcion != 4) {
 
                 System.out.println("Menú de administrador:");
                 System.out.println("1 - Listar usuarios");
                 System.out.println("2 - Buscar usuario");
-                System.out.println("3 - Cerrar sesión");
+                System.out.println("3 - Registrar tester");
+                System.out.println("4 - Cerrar sesión");
 
-                opcion = scanner.nextInt();
-                scanner.nextLine();
+                opcion = leerOpcion();
 
                 switch (opcion) {
                     case 1:
@@ -148,6 +170,10 @@ public class Main {
                         break;
 
                     case 3:
+                        registrarTester();
+                        break;
+
+                    case 4:
                         System.out.println("Sesión cerrada");
                         break;
 
@@ -163,8 +189,7 @@ public class Main {
                 System.out.println("Menú principal de usuario:");
                 System.out.println("1 - Cerrar sesión");
 
-                opcion = scanner.nextInt();
-                scanner.nextLine();
+                opcion = leerOpcion();
 
                 if (opcion == 1) {
                     System.out.println("Sesión cerrada");
@@ -174,23 +199,62 @@ public class Main {
             }
         }
     }
+
     public static void buscarUsuario() {
 
-        System.out.println("Ingrese el email de un usuario para buscarlo:");
-        String email = scanner.nextLine();
+        try {
 
-        Usuario usuario = sistema.buscarUsuario(email);
+            System.out.println(
+                    "Ingrese el email de un usuario para buscarlo:"
+            );
 
-        if (usuario != null) {
+            String email = scanner.nextLine();
+
+            if (email.trim().isEmpty()) {
+                throw new DatosInvalidosException(
+                        "Debe ingresar un email."
+                );
+            }
+
+            Usuario usuario = sistema.buscarUsuario(email);
+
             System.out.println("Usuario encontrado:");
             System.out.println("Nombre: " + usuario.getNombre());
             System.out.println("Apellido: " + usuario.getApellido());
             System.out.println("Email: " + usuario.getEmail());
-            System.out.println("Pais: " + usuario.getPais());
+            System.out.println(
+                    "País de nacimiento: "
+                            + usuario.getPaisNacimiento()
+            );
 
             usuario.mostrarRol();
-        } else {
-            System.out.println("Usuario no encontrado");
+
+        } catch (UsuarioNoEncontradoException |
+                 DatosInvalidosException e) {
+
+            System.out.println("Error: " + e.getMessage());
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Ocurrió un error inesperado durante la búsqueda."
+            );
+        }
+    }
+    public static int leerOpcion() {
+
+        while (true) {
+
+            try {
+
+                String entrada = scanner.nextLine();
+                return Integer.parseInt(entrada);
+
+            } catch (NumberFormatException e) {
+
+                System.out.println("Dato inválido. Debe ingresar un número.");
+                System.out.println("Ingrese nuevamente una opción:");
+            }
         }
     }
 }

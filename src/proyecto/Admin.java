@@ -2,30 +2,20 @@ package proyecto;
 
 public class Admin extends Usuario {
 
-    private String nivelAcceso;
-
     public Admin() {
 
         super();
     }
 
-    public Admin(String nombre, String apellido, int edad,
-                 String pais, String email, String clave,
-                 String nivelAcceso) {
+    public Admin(String nombre, String apellido,
+                 String paisNacimiento, String email, String clave) {
 
-        super(nombre, apellido, edad, pais, email, clave);
-        this.nivelAcceso = nivelAcceso;
+        super(nombre, apellido, paisNacimiento, email, clave);
     }
 
-    public String getNivelAcceso() {
-
-        return nivelAcceso;
-    }
-    public void setNivelAcceso(String nivelAcceso) {
-        this.nivelAcceso = nivelAcceso;
-    }
     @Override
     public void mostrarRol() {
-        System.out.println("Soy un administrador con nivel de acceso: " + nivelAcceso);
+
+        System.out.println("Soy un administrador");
     }
 }

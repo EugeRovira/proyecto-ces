@@ -1,133 +1,82 @@
-    
-Listado de funcionalidades detectadas:
 
+# Sistema de Gestión de Usuarios
 
-    Funcionalidades en el Home de la página (sin realizar Login):
+## Descripción
 
-1-	Iniciar sesión.
+El proyecto fue desarrollado en Java aplicando Programación Orientada a Objetos.
 
-Permite iniciar sesión con datos previamente registrados (datos de administrador).
+El sistema permite administrar usuarios de tipo Administrador y Tester mediante un menú por consola.
 
-2-	Registrarse.
+## Funcionalidades
 
-Permite registrarse con datos nuevos.
+- Registro de administradores.
+- Inicio de sesión.
+- Registro de usuarios Tester (solo por un Administrador).
+- Listado de usuarios.
+- Búsqueda de usuarios por email.
+- Cierre de sesión.
+- Validación de datos ingresados.
+- Manejo de excepciones personalizadas.
 
-3-	Reiniciar contraseña.
+## Tecnologías utilizadas
 
-Permite recuperar la contraseña de un usuario previamente registrado.
+- Java
+- IntelliJ IDEA
+- Programación Orientada a Objetos (POO)
 
-    Funcionalidades dentro de Iniciar Sesión:
-1-	Iniciar sesión (luego de completar los datos).
+## ¿Cómo ejecutar el proyecto?
 
-Permite iniciar sesión con datos previamente registrados.
-- En este caso: Iniciar sesión como Administrador:
-     email: yaniscorrea@gmail.com contraseña: 12345
+1. Clonar o descargar el repositorio de Github.
+2. Abrir el proyecto en IntelliJ IDEA.
+3. Ejecutar la clase `Main.java`.
+4. Utilizar el menú que aparece en consola e ir realizando distintas pruebas para corroborar que el proyecto cumple con los requisitos solicitados.
 
-2-	Olvidé mi contraseña.
-     
-Permite recuperar la contraseña de un usuario previamente registrado.
+## Usuarios iniciales 
+Estos ya se encuentran precargados en el sistema y puede probarse el mismo con la info que detalla a continuación:
+O de lo contrario, cargar nuevos usuarios.
+### Administrador
 
-3-	Crear cuenta administrador.
+- Email: `admin@gmail.com`
+- Contraseña: `1234`
 
-Permite crear una cuenta con datos nuevos con un perfil de Administrador.
+### Tester
 
-4-	Volver atrás.
-     Vuelve a la página anterior.
+- Email: `tester@gmail.com`
+- Contraseña: `1234`
 
-    Funcionalidades dentro de Registrarse:
+## Validaciones implementadas
 
-1- Registrarse (luego de completar los datos).
-     
-Permite registrarse con datos nuevos.
+- No permite emails duplicados.
+- Los campos obligatorios no pueden quedar vacíos.
+- El email debe tener un formato válido.
+- La contraseña debe tener una longitud mínima de 4 caracteres.
+- El tipo de Tester es obligatorio.
+- Solo el usuario admin puede agregar testers.
 
-2-	Olvidé mi contraseña.
-     
-Permite recuperar la contraseña de un usuario previamente registrado.
+## Manejo de excepciones
 
-3-	Ya tengo cuenta.
-     
-Permite iniciar sesión con datos previamente registrados.
+Se implementaron las siguientes excepciones personalizadas:
 
-4-	Volver atrás.
-     
-Vuelve a la página anterior.
+- EmailDuplicadoException
+- DatosInvalidosException
+- UsuarioNoEncontradoException
 
-    Funcionalidades dentro de Reiniciar contraseña:
+## Mejoras de diseño
 
-1-	Reiniciar contraseña (luego de completar los datos).
-     
-Permite recuperar la contraseña de un usuario previamente registrado.
+Durante el desarrollo se aplicaron los siguientes conceptos:
 
-2-	Crear cuenta.
-     
-Permite crear una cuenta nueva con datos no registrados anteriormente.
+- Encapsulamiento.
+- Herencia.
+- Polimorfismo.
+- Abstracción.
+- Uso de colecciones (`ArrayList`).
+- Patrón de diseño Singleton en `SistemaUsuarios`.
 
-3-	Ya tengo cuenta.
-     
-Permite iniciar sesión con datos previamente registrados.
+## Diagrama UML
 
-4-	Volver atrás.
-     
-Vuelve a la página anterior.
+El diagrama UML final del proyecto se realizó con la página web diagrams.net y se encuentra a continuación:
 
-    Home de la página (realizado el Login):
-
-1-	Ir al perfil.
-
-Te lleva directamente al perfil del usuario administrador logueado y habilita realizar cambios de información personal.
-
-2-	Cerrar sesión.
-
-Permite cerrar la sesión del usuario actualmente logueado.
-
-3-	Crear Usuario.
-Permite crear un nuevo usuario con datos no registrados anteriormente.
-- En este caso: Iniciar sesión como Administrador:
-     email: juanrocca222@hotmail.com contraseña: 123456
-
-4-	Reiniciar contraseña.
-     
-Permite recuperar la contraseña de un usuario previamente registrado.
-
-5-	Ver usuarios.
-     
-Permite visualizar a todos los usuarios existentes.
-     
-    Funcionalidades dentro de Crear usuario:
-     
-1-	Crear usuario (luego de completar los datos).
-     
-Permite crear nuevo usuario con datos no registrados anteriormente.
-
-2-	Volver atrás.
-     
-Vuelve a la página anterior.
-     
-    Funcionalidades dentro de Reiniciar contraseña:
-
-1-	Reiniciar contraseña (luego de completar los datos).
-     
-Permite recuperar la contraseña de un usuario previamente registrado.
-
-2-	Crear cuenta.
-     
-Permite crear una cuenta nueva con datos no registrados anteriormente.
-     
-3-	Ya tengo cuenta.
-     
-Permite iniciar sesión con datos previamente registrados.
-     
-4-	Volver atrás.
-     
-Vuelve a la página anterior.
-     
-    Funcionalidades dentro de Ver Usuarios:
-     
-1-	Eliminar usuario.
-     
-Permite eliminar un usuario previamente registrado
-
-                         DIAGRAMA DE CLASES UML
+          IMAGEN DEL DIAGRAMA DE CLASES UML
 ------------------------------------------------
 
-![img.png](img.png)
+![img_1.png](img_1.png)

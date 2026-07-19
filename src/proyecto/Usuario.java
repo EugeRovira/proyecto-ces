@@ -4,20 +4,18 @@ public abstract class Usuario {
 
     private String nombre;
     private String apellido;
-    private int edad;
-    private String pais;
+    private String paisNacimiento;
     private String email;
     private String clave;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, int edad,
-                   String pais, String email, String clave) {
+    public Usuario(String nombre, String apellido, String paisNacimiento,
+                   String email, String clave) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.edad = edad;
-        this.pais = pais;
+        this.paisNacimiento = paisNacimiento;
         this.email = email;
         this.clave = clave;
     }
@@ -41,20 +39,12 @@ public abstract class Usuario {
         this.apellido = apellido;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getPaisNacimiento() {
+        return paisNacimiento;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setPaisNacimiento(String paisNacimiento) {
+        this.paisNacimiento = paisNacimiento;
     }
 
     public String getEmail() {

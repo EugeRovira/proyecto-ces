@@ -2,32 +2,32 @@ package proyecto;
 
 public class Tester extends Usuario {
 
-    private String tipoPrueba;
+    private String tipoTester;
 
     public Tester() {
 
         super();
     }
 
-    public Tester(String nombre, String apellido, int edad,
-                  String pais, String email, String clave,
-                  String tipoPrueba) {
-        super(nombre, apellido, edad, pais, email, clave);
-        this.tipoPrueba = tipoPrueba;
+    public Tester(String nombre, String apellido,
+                  String paisNacimiento, String email, String clave,
+                  String tipoTester) {
+        super(nombre, apellido, paisNacimiento, email, clave);
+        this.tipoTester = tipoTester;
     }
 
-    public String getTipoPrueba() {
+    public String getTipoTester() {
 
-        return tipoPrueba;
+        return tipoTester;
     }
 
-    public void setTipoPrueba(String tipoPrueba) {
+    public void setTipoTester(String tipoTester) {
 
-        this.tipoPrueba = tipoPrueba;
+        this.tipoTester = tipoTester;
     }
     @Override
     public void mostrarRol() {
-        System.out.println("Soy un tester y realizo pruebas de tipo: " + tipoPrueba);
+        System.out.println("Soy un tester de tipo: " + tipoTester);
     }
 }
 
